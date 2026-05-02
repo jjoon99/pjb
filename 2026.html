@@ -11,6 +11,11 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   <style>
+    :root {
+      --set1: #08ad61;
+      --set2: #1f6f8f;
+    }
+
     * { box-sizing: border-box; }
 
     body {
@@ -24,28 +29,37 @@
     main {
       width: min(760px, 100%);
       margin: 0 auto;
-      padding: 0 16px 48px;
-    }
-
-    .poster {
-      display: block;
-      width: calc(100% + 32px);
-      max-width: none;
-      margin: 0 -16px;
-      height: auto;
-      background: #fff;
+      padding: 36px 16px 48px;
     }
 
     .program {
       padding-top: 28px;
     }
 
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #666;
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     h1 {
-      margin: 0 0 22px;
-      font-size: clamp(28px, 7vw, 44px);
-      line-height: 1.04;
-      letter-spacing: -0.055em;
-      font-weight: 900;
+      margin: 0 0 10px;
+      font-size: clamp(36px, 10vw, 64px);
+      line-height: 0.96;
+      letter-spacing: -0.07em;
+      font-weight: 950;
+    }
+
+    .meta {
+      margin: 0 0 24px;
+      color: #555;
+      font-size: 15px;
+      line-height: 1.55;
+      letter-spacing: -0.025em;
+      font-weight: 650;
     }
 
     .tabs {
@@ -75,8 +89,17 @@
     }
 
     .tab-button[aria-selected="true"] {
-      background: #111;
-      color: #f4f3ef;
+      color: #fff;
+    }
+
+    #tab-set1[aria-selected="true"] {
+      border-color: var(--set1);
+      background: var(--set1);
+    }
+
+    #tab-set2[aria-selected="true"] {
+      border-color: var(--set2);
+      background: var(--set2);
     }
 
     .panel {
@@ -91,12 +114,15 @@
     h2 {
       margin: 0 0 16px;
       padding-bottom: 10px;
-      border-bottom: 3px solid #111;
-      font-size: 24px;
+      border-bottom: 3px solid currentColor;
+      font-size: 28px;
       line-height: 1;
       letter-spacing: -0.045em;
-      font-weight: 900;
+      font-weight: 950;
     }
+
+    #panel-set1 h2 { color: var(--set1); }
+    #panel-set2 h2 { color: var(--set2); }
 
     ol {
       list-style: none;
@@ -154,13 +180,8 @@
     }
 
     @media (min-width: 680px) {
-      main { padding-top: 28px; }
-      .poster {
-        width: 100%;
-        margin: 0;
-        border: 1px solid rgba(0,0,0,0.08);
-      }
-      .program { padding-top: 42px; }
+      main { padding-top: 48px; }
+      .program { padding-top: 0; }
       .tabs { top: 0; }
       li { grid-template-columns: 42px 1fr; }
       .song { font-size: 23px; }
@@ -170,10 +191,10 @@
 </head>
 <body>
   <main>
-    <img class="poster" src="assets/pjb2026-poster.jpg" alt="Post Jazzingyou Band 5th Live 포스터" />
-
     <section class="program" aria-label="세트리스트">
-      <h1>Post Jazzingyou Band<br>5th Live</h1>
+      <p class="eyebrow">5th Live</p>
+      <h1>Post Jazzingyou Band</h1>
+      <p class="meta">2026.05.23 SAT 6PM · 팡타개라지</p>
 
       <div class="tabs" role="tablist" aria-label="세트 전환">
         <button class="tab-button" id="tab-set1" type="button" role="tab" aria-selected="true" aria-controls="panel-set1">1부</button>
