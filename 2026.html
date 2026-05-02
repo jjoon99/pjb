@@ -479,39 +479,17 @@
       if (encoreTapCount >= 20) unlockEncore();
     }
 
-    function onTap(element, handler) {
-      let lastTouch = 0;
-
-      if (window.PointerEvent) {
-        element.addEventListener('pointerup', (event) => {
-          event.preventDefault();
-          handler(event);
-        });
-        return;
-      }
-
-      element.addEventListener('touchend', (event) => {
-        lastTouch = Date.now();
-        event.preventDefault();
-        handler(event);
-      }, { passive: false });
-
-      element.addEventListener('click', (event) => {
-        if (Date.now() - lastTouch < 700) return;
-        handler(event);
-      });
-    }
-
     tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab)));
-    onTap(encoreTab, countEncoreTap);
-    onTap(encoreTrack, countEncoreTap);
-    onTap(posterButton, openPoster);
+    encoreTab.addEventListener('click', countEncoreTap);
+    encoreTrack.addEventListener('click', countEncoreTap);
+    posterButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openPoster();
+    });
     posterModal.addEventListener('click', (event) => {
       if (event.target === posterModal || event.target === posterImage) closePoster();
     });
-    posterModal.addEventListener('touchend', (event) => {
-      if (event.target === posterModal || event.target === posterImage) closePoster();
-    }, { passive: true });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closePoster();
     });
