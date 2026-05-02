@@ -380,10 +380,9 @@
       posterImage.alt = 'Post Jazzingyou Band 5th Live 포스터';
     }
 
-    tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab)));
-    posterButton.addEventListener('click', () => {
+    function openPoster() {
       posterTapCount += 1;
-      if (posterTapCount >= 50) {
+      if (posterTapCount >= 25) {
         posterImage.src = easterPoster;
         posterImage.alt = 'Post Jazzingyou Band 5th Live 이스터에그 포스터';
         posterTapCount = 0;
@@ -392,8 +391,14 @@
         posterImage.alt = 'Post Jazzingyou Band 5th Live 포스터';
       }
       posterModal.classList.add('open');
+    }
+
+    tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab)));
+    posterButton.addEventListener('pointerup', (event) => {
+      event.preventDefault();
+      openPoster();
     });
-    posterModal.addEventListener('click', closePoster);
+    posterModal.addEventListener('pointerup', closePoster);
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closePoster();
     });
