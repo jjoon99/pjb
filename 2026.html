@@ -134,8 +134,8 @@
       font-weight: 950;
     }
 
-    #panel-set1 h2 { color: var(--set1); }
-    #panel-set2 h2 { color: var(--set2); }
+    #panel-set1 h2,
+    #panel-set2 h2 { color: var(--ink); }
 
     ol {
       list-style: none;
@@ -244,12 +244,12 @@
       <p class="meta">2026.05.23 SAT 6PM · 팡타개라지</p>
 
       <div class="tabs" role="tablist" aria-label="세트 전환">
-        <button class="tab-button" id="tab-set1" type="button" role="tab" aria-selected="true" aria-controls="panel-set1">1부</button>
-        <button class="tab-button" id="tab-set2" type="button" role="tab" aria-selected="false" aria-controls="panel-set2">2부</button>
+        <button class="tab-button" id="tab-set1" type="button" role="tab" aria-selected="true" aria-controls="panel-set1">PART 1</button>
+        <button class="tab-button" id="tab-set2" type="button" role="tab" aria-selected="false" aria-controls="panel-set2">PART 2</button>
       </div>
 
       <section class="panel active" id="panel-set1" role="tabpanel" aria-labelledby="tab-set1">
-        <h2>1부</h2>
+        <h2 aria-hidden="true"></h2>
         <ol>
           <li><div><p class="song">Candy Pianist</p><p class="members"><b>Ds.</b> 김우준 &nbsp; <b>Bs.</b> 박민기 &nbsp; <b>Pf.</b> 황보경 &nbsp; <b>Kb.</b> 이환</p></div></li>
           <li><div><p class="song">바다가 들린다</p><p class="members"><b>Ds.</b> 김우준 &nbsp; <b>Bs.</b> 박민기 &nbsp; <b>Pf.</b> 이환</p></div></li>
@@ -262,7 +262,7 @@
       </section>
 
       <section class="panel" id="panel-set2" role="tabpanel" aria-labelledby="tab-set2" hidden>
-        <h2>2부</h2>
+        <h2 aria-hidden="true"></h2>
         <ol>
           <li><div><p class="song">Old Castle</p><p class="members"><b>Ds.</b> 김한중 &nbsp; <b>Bs.</b> 이준석 &nbsp; <b>Pf.</b> 한지용</p></div></li>
           <li><div><p class="song">A Night In Tunisia</p><p class="members"><b>Ds.</b> 김한중 &nbsp; <b>Bs.</b> 이준석 &nbsp; <b>Pf.</b> 한지용 &nbsp; <b>Vc.</b> 하고은</p></div></li>
