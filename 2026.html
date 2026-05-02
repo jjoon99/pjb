@@ -242,6 +242,32 @@
       animation: orb-swirl 7s linear infinite;
     }
 
+    .poster-button.easter {
+      background:
+        radial-gradient(circle at 20% 24%, rgba(255, 255, 255, 0.72) 0 9%, transparent 30%),
+        radial-gradient(circle at 68% 26%, rgba(210, 18, 32, 0.98) 0 28%, transparent 56%),
+        radial-gradient(circle at 28% 78%, rgba(13, 13, 13, 0.96) 0 24%, transparent 52%),
+        radial-gradient(circle at 82% 76%, rgba(128, 0, 12, 0.92) 0 22%, transparent 54%),
+        conic-gradient(from 80deg, #090909, #d11220, #ffffff, #151515, #8b0010, #090909);
+      box-shadow:
+        0 0 0 5px rgba(255, 255, 255, 0.68),
+        0 0 0 9px rgba(17, 17, 17, 0.16),
+        inset 0 1px 6px rgba(255, 255, 255, 0.82),
+        inset 0 -8px 13px rgba(0, 0, 0, 0.32),
+        0 5px 18px rgba(0, 0, 0, 0.22);
+      filter: blur(0.85px) saturate(1.55) contrast(1.24);
+    }
+
+    .poster-button.easter::before {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.78), transparent 18%),
+        radial-gradient(circle at 66% 42%, rgba(211,18,32,0.95), transparent 40%),
+        radial-gradient(circle at 30% 70%, rgba(0,0,0,0.92), transparent 42%),
+        conic-gradient(from 210deg, rgba(255,255,255,0.88), rgba(8,8,8,0.96), rgba(211,18,32,0.98), rgba(0,0,0,0.95), rgba(139,0,16,0.9), rgba(255,255,255,0.88));
+      filter: blur(7px);
+      animation: orb-swirl 0.58s linear infinite;
+    }
+
     .poster-button::after {
       content: "";
       position: absolute;
@@ -386,6 +412,8 @@
         posterTapCount += 1;
         easterUnlocked = posterTapCount >= 20;
       }
+
+      posterButton.classList.toggle('easter', easterUnlocked);
 
       if (easterUnlocked) {
         posterImage.src = easterPoster;
