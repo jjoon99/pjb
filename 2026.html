@@ -57,7 +57,7 @@
 
     h1 {
       margin: 0 0 clamp(5px, 1.2vh, 10px);
-      font-size: clamp(28px, 9.2vw, 58px);
+      font-size: clamp(26px, 8.4vw, 52px);
       line-height: 0.94;
       letter-spacing: -0.07em;
       font-weight: 950;
@@ -169,14 +169,8 @@
       letter-spacing: -0.04em;
       font-weight: 900;
       white-space: nowrap;
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-
-    .song::-webkit-scrollbar {
-      display: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .members {
