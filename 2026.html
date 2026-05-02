@@ -364,6 +364,7 @@
     const normalPoster = 'assets/pjb2026-poster.jpg';
     const easterPoster = 'assets/pjb2026-easter.jpg';
     let posterTapCount = 0;
+    let easterUnlocked = false;
 
     function activate(tab) {
       tabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
@@ -381,11 +382,14 @@
     }
 
     function openPoster() {
-      posterTapCount += 1;
-      if (posterTapCount >= 25) {
+      if (!easterUnlocked) {
+        posterTapCount += 1;
+        easterUnlocked = posterTapCount >= 25;
+      }
+
+      if (easterUnlocked) {
         posterImage.src = easterPoster;
         posterImage.alt = 'Post Jazzingyou Band 5th Live 이스터에그 포스터';
-        posterTapCount = 0;
       } else {
         posterImage.src = normalPoster;
         posterImage.alt = 'Post Jazzingyou Band 5th Live 포스터';
