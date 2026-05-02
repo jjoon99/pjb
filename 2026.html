@@ -210,6 +210,15 @@
       border-bottom: 3px solid var(--ink);
     }
 
+    #panel-encore li {
+      grid-template-columns: 1fr;
+      cursor: pointer;
+    }
+
+    #panel-encore li::before {
+      display: none;
+    }
+
     .poster-button {
       position: fixed;
       right: max(14px, env(safe-area-inset-right));
@@ -391,7 +400,7 @@
       <section class="panel" id="panel-encore" role="tabpanel" aria-labelledby="tab-encore" hidden>
         <h2 aria-hidden="true"></h2>
         <ol>
-          <li><div><p class="song">???</p><p class="members">Encore</p></div></li>
+          <li class="encore-track"><div><p class="song encore-song">???</p><p class="members">Encore</p></div></li>
         </ol>
       </section>
     </section>
@@ -402,6 +411,8 @@
     const panels = document.querySelectorAll('[role="tabpanel"]');
     const tabsContainer = document.querySelector('.tabs');
     const encoreTab = document.querySelector('.encore-tab');
+    const encoreTrack = document.querySelector('.encore-track');
+    const encoreSong = document.querySelector('.encore-song');
     const posterButton = document.querySelector('.poster-button');
     const posterModal = document.querySelector('.poster-modal');
     const posterImage = document.querySelector('.poster-modal-image');
@@ -409,6 +420,8 @@
     const easterPoster = 'assets/pjb2026-easter.jpg';
     let posterTapCount = 0;
     let easterUnlocked = false;
+    let encoreTapCount = 0;
+    let encoreUnlocked = false;
 
     function activate(tab) {
       tabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
@@ -445,7 +458,21 @@
       posterModal.classList.add('open');
     }
 
+    function unlockEncore() {
+      encoreUnlocked = true;
+      encoreTab.textContent = 'ENCORE';
+      encoreSong.textContent = 'Distance';
+    }
+
+    function countEncoreTap() {
+      if (!easterUnlocked || encoreUnlocked) return;
+      encoreTapCount += 1;
+      if (encoreTapCount >= 20) unlockEncore();
+    }
+
     tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab)));
+    encoreTab.addEventListener('pointerup', countEncoreTap);
+    encoreTrack.addEventListener('pointerup', countEncoreTap);
     posterButton.addEventListener('pointerup', (event) => {
       event.preventDefault();
       openPoster();
