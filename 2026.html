@@ -314,7 +314,7 @@
 <body>
   <button class="poster-button" type="button" aria-label="포스터 보기" title="포스터 보기"></button>
   <div class="poster-modal" role="dialog" aria-modal="true" aria-label="공연 포스터">
-    <img src="assets/pjb2026-poster.jpg" alt="Post Jazzingyou Band 5th Live 포스터" />
+    <img class="poster-modal-image" src="assets/pjb2026-poster.jpg" alt="Post Jazzingyou Band 5th Live 포스터" />
   </div>
 
   <main>
@@ -360,6 +360,10 @@
     const panels = document.querySelectorAll('[role="tabpanel"]');
     const posterButton = document.querySelector('.poster-button');
     const posterModal = document.querySelector('.poster-modal');
+    const posterImage = document.querySelector('.poster-modal-image');
+    const normalPoster = 'assets/pjb2026-poster.jpg';
+    const easterPoster = 'assets/pjb2026-easter.jpg';
+    let posterTapCount = 0;
 
     function activate(tab) {
       tabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
@@ -372,10 +376,23 @@
 
     function closePoster() {
       posterModal.classList.remove('open');
+      posterImage.src = normalPoster;
+      posterImage.alt = 'Post Jazzingyou Band 5th Live 포스터';
     }
 
     tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab)));
-    posterButton.addEventListener('click', () => posterModal.classList.add('open'));
+    posterButton.addEventListener('click', () => {
+      posterTapCount += 1;
+      if (posterTapCount >= 50) {
+        posterImage.src = easterPoster;
+        posterImage.alt = 'Post Jazzingyou Band 5th Live 이스터에그 포스터';
+        posterTapCount = 0;
+      } else {
+        posterImage.src = normalPoster;
+        posterImage.alt = 'Post Jazzingyou Band 5th Live 포스터';
+      }
+      posterModal.classList.add('open');
+    });
     posterModal.addEventListener('click', closePoster);
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closePoster();
