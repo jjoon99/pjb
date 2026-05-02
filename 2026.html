@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
   <title>Post Jazzingyou Band 5th Live</title>
   <meta name="description" content="Post Jazzingyou Band 5th Live 공연 세트리스트" />
   <meta property="og:title" content="Post Jazzingyou Band 5th Live" />
@@ -12,8 +12,6 @@
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   <style>
     :root {
-      --set1: #08ad61;
-      --set2: #1f6f8f;
       --paper: #f4f3ef;
       --ink: #111;
     }
@@ -29,11 +27,32 @@
 
     body {
       margin: 0;
+      position: relative;
       background: var(--paper);
       color: var(--ink);
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       word-break: keep-all;
       overflow-wrap: normal;
+    }
+
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -24px;
+      z-index: -2;
+      background: url("assets/pjb2026-poster.jpg") center / cover no-repeat;
+      filter: blur(18px) saturate(0.9);
+      opacity: 0.18;
+      transform: scale(1.06);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: rgba(244, 243, 239, 0.82);
     }
 
     main {
@@ -107,9 +126,11 @@
       cursor: pointer;
     }
 
-    .tab-button[aria-selected="true"] { color: #fff; }
-    #tab-set1[aria-selected="true"] { border-color: var(--set1); background: var(--set1); }
-    #tab-set2[aria-selected="true"] { border-color: var(--set2); background: var(--set2); }
+    .tab-button[aria-selected="true"] {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+    }
 
     .panel {
       display: none;
